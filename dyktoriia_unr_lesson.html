@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Директорія УНР — Інтерактивний урок | НМТ 2026</title>
+<meta name="description" content="Інтерактивний тренажер НМТ з теми Директорія УНР для 10 класу. Тест + стрічка подій.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Geologica:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+
+<style>
+:root {
+  --bg:        #0d0f14;
+  --bg2:       #13161e;
+  --bg3:       #1a1e2a;
+  --border:    rgba(255,255,255,0.08);
+  --border2:   rgba(255,255,255,0.14);
+  --text:      #e8eaf0;
+  --text2:     #8b90a0;
+  --text3:     #555c70;
+  --gold:      #c8a84b;
+  --gold-light:#f0d080;
+  --gold-bg:   rgba(200,168,75,0.10);
+  --gold-bg2:  rgba(200,168,75,0.18);
+  --blue:      #4a8fd4;
+  --blue-bg:   rgba(74,143,212,0.12);
+  --blue-bg2:  rgba(74,143,212,0.20);
+  --green:     #5a9e4a;
+  --green-bg:  rgba(90,158,74,0.12);
+  --red:       #c45050;
+  --red-bg:    rgba(196,80,80,0.12);
+  --radius:    10px;
+  --radius-lg: 14px;
+  --font-head: 'Unbounded', sans-serif;
+  --font-body: 'Geologica', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── Decorative background ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(200,168,75,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 80%, rgba(74,143,212,0.05) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Layout ── */
+.page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* ── Hero header ── */
+.hero {
+  display: flex; flex-direction: column; align-items: flex-start;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.hero-tag {
+  font-family: var(--font-head);
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-bg);
+  border: 0.5px solid rgba(200,168,75,0.25);
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 1rem;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.hero-title span { color: var(--gold); }
+.hero-meta {
+  font-size: 13px; color: var(--text2);
+  display: flex; align-items: center; flex-wrap: wrap; gap: 16px;
+  margin-top: 1rem;
+}
+.hero-meta-item { display: flex; align-items: center; gap: 6px; }
+.hero-meta-item i { color: var(--gold); font-size: 15px; }
+
+/* ── Timer ── */
+.timer-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-bg); border: 0.5px solid rgba(200,168,75,0.3);
+  padding: 7px 16px; border-radius: 24px;
+  font-family: var(--font-head); font-size: 15px; font-weight: 500;
+  color: var(--gold-light);
+  margin-left: auto;
+}
+.timer-pill i { font-size: 16px; }
+.timer-pill.urgent { color: var(--red); background: var(--red-bg); border-color: rgba(196,80,80,0.3); animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+
+/* ── Tabs ── */
+.tabs {
+  display: flex; gap: 6px; margin-bottom: 2rem;
+  background: var(--bg2); border-radius: var(--radius-lg);
+  padding: 5px;
+  border: 0.5px solid var(--border);
+}
+.tab {
+  flex: 1; padding: 10px 16px;
+  border-radius: var(--radius);
+  background: transparent; border: none;
+  color: var(--text2); font-family: var(--font-body); font-size: 13px;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  font-weight: 400;
+}
+.tab i { font-size: 16px; }
+.tab:hover { color: var(--text); background: var(--bg3); }
+.tab.active {
+  background: var(--gold-bg2);
+  color: var(--gold-light);
+  border: 0.5px solid rgba(200,168,75,0.3);
+  font-weight: 500;
+}
+
+/* ── Sections ── */
+.section { display: none; animation: fadeIn 0.2s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── Progress ── */
+.progress-wrap {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem;
+}
+.progress-track {
+  flex: 1; height: 4px; background: var(--bg3); border-radius: 2px;
+}
+.progress-fill {
+  height: 4px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 0.4s ease;
+}
+.progress-label { font-size: 12px; color: var(--text3); white-space: nowrap; }
+
+/* ── Score dots ── */
+.score-dots { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bg3); border: 1px solid var(--border2);
+  transition: all 0.2s;
+}
+.dot.current { border-color: var(--gold); box-shadow: 0 0 6px rgba(200,168,75,0.4); }
+.dot.ok { background: var(--green); border-color: var(--green); }
+.dot.fail { background: var(--red); border-color: var(--red); }
+
+/* ── Question card ── */
+.q-card {
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-bottom: 1rem;
+}
+.q-num {
+  font-family: var(--font-head); font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 10px;
+}
+.q-text {
+  font-size: 16px; font-weight: 500; color: var(--text);
+  line-height: 1.65; margin-bottom: 1.5rem;
+}
+.q-source {
+  background: var(--bg3);
+  border-left: 2px solid var(--gold);
+  padding: 12px 16px; border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 13px; color: var(--text2);
+  margin-bottom: 1.5rem; line-height: 1.65;
+  font-style: italic;
+}
+
+/* ── Answer buttons ── */
+.answers { display: flex; flex-direction: column; gap: 8px; }
+.ans-btn {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 13px 16px;
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  background: var(--bg3);
+  cursor: pointer; text-align: left; width: 100%;
+  font-size: 14px; color: var(--text); font-family: var(--font-body);
+  transition: all 0.15s; line-height: 1.55;
+}
+.ans-btn:hover:not(:disabled) {
+  border-color: var(--border2);
+  background: var(--bg2);
+  transform: translateX(2px);
+}
+.ans-btn .letter {
+  font-family: var(--font-head); font-size: 12px; font-weight: 700;
+  color: var(--gold); min-width: 22px; padding-top: 1px;
+}
+.ans-btn.correct { background: rgba(90,158,74,0.15); border-color: var(--green); color: #8fd07a; }
+.ans-btn.correct .letter { color: var(--green); }
+.ans-btn.wrong { background: var(--red-bg); border-color: var(--red); color: #e89090; }
+.ans-btn.wrong .letter { color: var(--red); }
+.ans-btn:disabled { cursor: default; }
+
+/* ── Explanation ── */
+.explanation {
+  margin-top: 1rem; padding: 14px 16px;
+  background: var(--bg3); border: 0.5px solid var(--border);
+  border-radius: var(--radius); font-size: 13px; color: var(--text2);
+  line-height: 1.65; border-left: 2px solid var(--blue);
+}
+.explanation strong { color: var(--blue); font-weight: 500; }
+
+/* ── Navigation ── */
+.q-nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-top: 1rem; flex-wrap: wrap;
+}
+.btn {
+  padding: 9px 20px; border-radius: var(--radius);
+  border: 0.5px solid var(--border); background: var(--bg3);
+  color: var(--text2); font-family: var(--font-body); font-size: 13px;
+  cursor: pointer; transition: all 0.15s;
+}
+.btn:hover:not(:disabled) { border-color: var(--border2); color: var(--text); background: var(--bg2); }
+.btn:disabled { opacity: 0.35; cursor: default; }
+.btn.primary {
+  background: var(--gold-bg2); border-color: rgba(200,168,75,0.4);
+  color: var(--gold-light); font-weight: 500;
+}
+.btn.primary:hover { background: rgba(200,168,75,0.28); }
+.btn-ghost-count { font-size: 12px; color: var(--text3); }
+
+/* ── Result screen ── */
+.result-screen { text-align: center; padding: 2.5rem 1rem; }
+.result-crown { font-size: 52px; margin-bottom: 1rem; animation: bounce 0.5s ease; }
+@keyframes bounce { 0%{transform:scale(0.5);opacity:0} 80%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }
+.result-title { font-family: var(--font-head); font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.result-sub { font-size: 14px; color: var(--text2); margin-bottom: 2rem; }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 2rem; }
+.stat {
+  background: var(--bg3); border-radius: var(--radius);
+  border: 0.5px solid var(--border); padding: 14px;
+  text-align: center;
+}
+.stat-val { font-family: var(--font-head); font-size: 26px; font-weight: 700; margin-bottom: 2px; }
+.stat-lbl { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; }
+.stat.green .stat-val { color: var(--green); }
+.stat.red .stat-val { color: var(--red); }
+.stat.gold .stat-val { color: var(--gold); }
+
+/* ── Timeline section ── */
+.tl-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+.tl-section-title {
+  font-family: var(--font-head); font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 12px;
+}
+
+/* Cards pile */
+.cards-pile { display: flex; flex-direction: column; gap: 7px; }
+.ev-card {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 13px;
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  background: var(--bg3);
+  font-size: 13px; color: var(--text2);
+  cursor: pointer; transition: all 0.15s; line-height: 1.5;
+}
+.ev-card i { color: var(--text3); font-size: 14px; flex-shrink: 0; padding-top: 2px; }
+.ev-card:hover { border-color: var(--border2); color: var(--text); background: var(--bg2); }
+.ev-card.selected {
+  border-color: var(--gold);
+  background: var(--gold-bg2);
+  color: var(--gold-light);
+  transform: translateX(3px);
+}
+.ev-card.selected i { color: var(--gold); }
+.ev-card.placed { opacity: 0.35; cursor: default; pointer-events: none; border-color: var(--border); }
+
+/* Timeline rail */
+.timeline-rail { position: relative; padding-left: 26px; }
+.timeline-rail::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(to bottom, transparent, var(--border), var(--border2), var(--border), transparent);
+}
+.tl-slot { position: relative; margin-bottom: 18px; cursor: pointer; }
+.tl-dot {
+  position: absolute; left: -22px; top: 5px;
+  width: 13px; height: 13px; border-radius: 50%;
+  border: 1.5px solid var(--border2);
+  background: var(--bg); transition: all 0.15s;
+}
+.tl-slot:hover .tl-dot { border-color: var(--gold); }
+.tl-slot.correct .tl-dot { border-color: var(--green); background: var(--green); box-shadow: 0 0 8px rgba(90,158,74,0.4); }
+.tl-slot.wrong .tl-dot { border-color: var(--red); background: var(--red); }
+
+.tl-date {
+  font-family: var(--font-head); font-size: 9px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 4px;
+  transition: color 0.15s;
+}
+.tl-slot:hover .tl-date { color: var(--gold); }
+.tl-slot.correct .tl-date { color: var(--green); }
+.tl-slot.wrong .tl-date { color: var(--red); }
+
+.tl-content {
+  font-size: 13px; color: var(--text); line-height: 1.5;
+  padding: 9px 12px; border-radius: var(--radius);
+  border: 0.5px solid var(--border); background: var(--bg3);
+  transition: all 0.15s;
+}
+.tl-slot:hover .tl-content { border-color: rgba(200,168,75,0.2); }
+.tl-slot.correct .tl-content { border-color: rgba(90,158,74,0.4); background: rgba(90,158,74,0.07); color: #8fd07a; }
+.tl-slot.wrong .tl-content { border-color: rgba(196,80,80,0.4); background: rgba(196,80,80,0.07); color: #e89090; }
+.tl-empty { color: var(--text3); font-style: italic; }
+
+.tl-hint { font-size: 11px; margin-top: 3px; padding-left: 2px; }
+.tl-hint.ok { color: var(--green); }
+.tl-hint.bad { color: var(--red); }
+
+.tl-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 1.25rem; padding-top: 1rem; border-top: 0.5px solid var(--border);
+  flex-wrap: wrap; gap: 10px;
+}
+.tl-score-label { font-size: 13px; color: var(--text2); }
+.tl-score-label strong { color: var(--gold); font-weight: 500; }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .page { padding: 1.25rem 1rem 3rem; }
+  .tl-layout { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .hero-title { font-size: 22px; }
+  .timer-pill { margin-left: 0; }
+  .hero-meta { gap: 10px; }
+  .tabs { flex-direction: column; }
+}
+
+/* ── Accessibility ── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border2); }
+</style>
+</head>
+<body>
+
+<main class="page" role="main">
+  <h1 class="sr-only">Директорія УНР — Інтерактивний урок з підготовки до НМТ</h1>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-tag">
+      <i class="ti ti-school" aria-hidden="true"></i>
+      Історія України · 10 клас
+    </div>
+    <div class="hero-title">Директорія <span>УНР</span></div>
+    <div class="hero-meta">
+      <span class="hero-meta-item"><i class="ti ti-book-2" aria-hidden="true"></i> Тренажер НМТ 2026</span>
+      <span class="hero-meta-item"><i class="ti ti-list-check" aria-hidden="true"></i> 10 питань</span>
+      <span class="hero-meta-item"><i class="ti ti-timeline" aria-hidden="true"></i> Стрічка подій</span>
+      <div class="timer-pill" id="timer-pill" role="timer" aria-live="polite" aria-label="Залишилось часу">
+        <i class="ti ti-clock" aria-hidden="true"></i>
+        <span id="timer-display">30:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs" role="tablist" aria-label="Розділи уроку">
+    <button class="tab active" role="tab" aria-selected="true" aria-controls="section-test" onclick="switchTab('test')">
+      <i class="ti ti-list-check" aria-hidden="true"></i> Тренажер НМТ
+    </button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="section-timeline" onclick="switchTab('timeline')">
+      <i class="ti ti-timeline" aria-hidden="true"></i> Стрічка подій
+    </button>
+  </nav>
+
+  <!-- Test section -->
+  <section id="section-test" class="section active" role="tabpanel">
+    <div class="score-dots" id="score-dots" aria-label="Стан відповідей" role="list"></div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+      <span class="progress-label" id="progress-label">0 / 10</span>
+    </div>
+    <div id="test-content"></div>
+  </section>
+
+  <!-- Timeline section -->
+  <section id="section-timeline" class="section" role="tabpanel">
+    <div id="timeline-content"></div>
+  </section>
+</main>
+
+<script>
+const questions = [
+  {
+    text: "Укажіть, хто з діячів у 1920 р. був ініціатором воєнно-політичного союзу УНР з Польщею (Варшавська угода).",
+    options: ["Симон Петлюра", "Нестор Махно", "Павло Скоропадський", "Євген Коновалець"],
+    correct: 0,
+    explanation: "Симон Петлюра підписав Варшавську угоду з Польщею у квітні 1920 р. В обмін на визнання незалежності УНР та військову допомогу Польщі були передані Галичина і Волинь."
+  },
+  {
+    text: "Коли Директорія УНР прийшла до влади?",
+    options: ["Лютий 1917 р.", "Листопад–грудень 1918 р.", "Січень 1919 р.", "Квітень 1920 р."],
+    correct: 1,
+    explanation: "Директорія прийшла до влади внаслідок антигетьманського повстання у листопаді–грудні 1918 р., скинувши гетьмана П. Скоропадського."
+  },
+  {
+    text: "Хто очолював Директорію УНР після відставки В. Винниченка?",
+    options: ["Михайло Грушевський", "Симон Петлюра", "Євген Петрушевич", "Андрій Лівицький"],
+    correct: 1,
+    explanation: "Після відставки В. Винниченка (лютий 1919 р.) на чолі Директорії став Симон Петлюра як Головний Отаман військ УНР."
+  },
+  {
+    text: "Який орган Директорія скликала в січні 1919 р. для вирішення питання організації влади?",
+    options: ["Центральну Раду", "Трудовий конгрес", "Установчі збори", "Всеукраїнський з'їзд хліборобів"],
+    correct: 1,
+    explanation: "Після повалення гетьманату Директорія скликала Трудовий конгрес України (22–28 січня 1919 р.) для вирішення питань організації влади і форми державного правління."
+  },
+  {
+    text: "Яку подію описує документ: «Перехід Галицької Армії на сторону Денікіна поставив нашу Армію в надзвичайно тяжке положення…»?",
+    options: ["Початок антигетьманського повстання", "Скрутне становище УНР наприкінці 1919 р.", "Підписання Варшавської угоди", "Другий Зимовий похід 1921 р."],
+    correct: 1,
+    explanation: "Цей документ описує критичне становище УНР наприкінці 1919 р., коли Галицька Армія перейшла на бік Денікіна. На той час УНР очолював Симон Петлюра."
+  },
+  {
+    text: "Унаслідок якої події П. Скоропадський видав «Федеративну грамоту», що стала приводом для повстання Директорії?",
+    options: ["Падіння Австро-Угорщини", "Більшовицький наступ", "Поразка Центральних держав у Першій світовій", "Укладення Ризького миру"],
+    correct: 2,
+    explanation: "Після поразки Центральних держав у Першій світовій війні (листопад 1918 р.) Скоропадський видав «Федеративну грамоту» про федерацію з небільшовицькою Росією. Для опозиції це стало виправданням антигетьманського повстання."
+  },
+  {
+    text: "Яким документом було проголошено Акт Злуки УНР і ЗУНР (22 січня 1919 р.)?",
+    options: ["Четвертий Універсал", "Директива Директорії", "Грамота злуки", "Ризький договір"],
+    correct: 2,
+    explanation: "22 січня 1919 р. було проголошено Акт Злуки УНР і ЗУНР — урочисте об'єднання двох українських держав. Дата 22 січня відзначається як День соборності України."
+  },
+  {
+    text: "Чим завершився Другий Зимовий похід (листопадовий рейд) 1921 р.?",
+    options: ["Визволенням Києва", "Поразкою і загибеллю загонів Ю. Тютюнника", "Підписанням перемир'я з більшовиками", "Відновленням влади Директорії"],
+    correct: 1,
+    explanation: "Другий Зимовий похід під командуванням Ю. Тютюнника (листопад 1921 р.) зазнав поразки від більшовиків під Базаром. Це стало останньою збройною спробою відновити Директорію УНР."
+  },
+  {
+    text: "Коли і де загинув Симон Петлюра?",
+    options: ["Варшава, 1920", "Київ, 1921", "Париж, 1926", "Берлін, 1923"],
+    correct: 2,
+    explanation: "Симон Петлюра був убитий у Парижі 25 травня 1926 р. Шмулем Шварцбардом. Вбивця стверджував, що мстить за єврейські погроми часів Директорії."
+  },
+  {
+    text: "Якою була головна причина поразки Директорії УНР у 1919–1920 рр.?",
+    options: [
+      "Відсутність підтримки селянства",
+      "Воєнне і дипломатичне протистояння одночасно з більшовиками, білогвардійцями та Польщею, епідемія тифу",
+      "Зрада галицьких союзників з самого початку",
+      "Окупація Антантою"
+    ],
+    correct: 1,
+    explanation: "Директорія зазнала поразки через комплекс факторів: боротьбу на три фронти одночасно (більшовики, Денікін, Польща), спустошливу епідемію тифу в армії, економічний занепад та міжнародну ізоляцію."
+  }
+];
+
+const timelineEvents = [
+  { date: "Листопад 1918", event: "Антигетьманське повстання. Утворення Директорії УНР." },
+  { date: "Грудень 1918",  event: "Директорія захоплює Київ. Скоропадський тікає до Берліна." },
+  { date: "22 січня 1919", event: "Акт Злуки УНР і ЗУНР. Проголошення соборності." },
+  { date: "Лютий 1919",   event: "Трудовий конгрес. Відставка Винниченка. Петлюра очолює Директорію." },
+  { date: "Кінець 1919",  event: "Галицька Армія переходить до Денікіна. Критичне становище УНР." },
+  { date: "Квітень 1920", event: "Варшавська угода з Польщею. Спільний наступ на більшовиків." },
+  { date: "Жовтень 1920", event: "Ризький мир між Польщею і РСФРР. УНР зрадили." },
+  { date: "Листопад 1921",event: "Другий Зимовий похід Тютюнника. Поразка під Базаром." }
+];
+
+/* ── State ── */
+let current = 0;
+let answers = new Array(questions.length).fill(null);
+let answered = new Array(questions.length).fill(false);
+
+let tlSelected = null;
+let tlPlaced = new Array(timelineEvents.length).fill(null);
+let shuffled = [];
+
+let timerSecs = 30 * 60;
+let timerInterval = null;
+
+/* ── Timer ── */
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timerSecs = Math.max(0, timerSecs - 1);
+    const m = Math.floor(timerSecs / 60);
+    const s = timerSecs % 60;
+    document.getElementById('timer-display').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    const pill = document.getElementById('timer-pill');
+    if (timerSecs <= 300) pill.classList.add('urgent');
+    else pill.classList.remove('urgent');
+    if (timerSecs === 0) clearInterval(timerInterval);
+  }, 1000);
+}
+
+/* ── Tab switch ── */
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    const id = ['test','timeline'][i];
+    const active = id === tab;
+    t.classList.toggle('active', active);
+    t.setAttribute('aria-selected', active);
+  });
+  document.getElementById('section-test').classList.toggle('active', tab === 'test');
+  document.getElementById('section-timeline').classList.toggle('active', tab === 'timeline');
+}
+
+/* ── Dots & Progress ── */
+function renderDots() {
+  const c = document.getElementById('score-dots');
+  c.innerHTML = '';
+  questions.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.setAttribute('role', 'listitem');
+    if (answered[i]) {
+      d.className = 'dot ' + (answers[i] === questions[i].correct ? 'ok' : 'fail');
+      d.setAttribute('aria-label', answers[i] === questions[i].correct ? 'Правильно' : 'Неправильно');
+    } else {
+      d.className = 'dot' + (i === current ? ' current' : '');
+      d.setAttribute('aria-label', i === current ? 'Поточне питання' : 'Без відповіді');
+    }
+    c.appendChild(d);
+  });
+  const done = answers.filter(a => a !== null).length;
+  document.getElementById('progress').style.width = Math.round((done / questions.length) * 100) + '%';
+  document.getElementById('progress-label').textContent = done + ' / ' + questions.length;
+}
+
+/* ── Render question ── */
+function renderQuestion() {
+  renderDots();
+  const q = questions[current];
+  const letters = ['А', 'Б', 'В', 'Г'];
+  const isAnswered = answered[current];
+
+  let html = `<div class="q-card">
+    <div class="q-num">Питання ${current + 1} із ${questions.length}</div>
+    <div class="q-text">${q.text}</div>
+    <div class="answers" role="group" aria-label="Варіанти відповідей">`;
+
+  q.options.forEach((opt, i) => {
+    let cls = 'ans-btn';
+    if (isAnswered) {
+      if (i === q.correct) cls += ' correct';
+      else if (i === answers[current] && answers[current] !== q.correct) cls += ' wrong';
+    }
+    const ariaLabel = isAnswered
+      ? (i === q.correct ? 'Правильна відповідь: ' : i === answers[current] ? 'Ваша неправильна відповідь: ' : '') + opt
+      : opt;
+    html += `<button class="${cls}" onclick="selectAnswer(${i})" ${isAnswered ? 'disabled' : ''} aria-label="${ariaLabel}">
+      <span class="letter" aria-hidden="true">${letters[i]}</span>
+      <span>${opt}</span>
+    </button>`;
+  });
+
+  html += `</div>`;
+
+  if (isAnswered) {
+    html += `<div class="explanation" role="note"><strong>Пояснення:</strong> ${q.explanation}</div>`;
+  }
+
+  html += `</div>`;
+
+  const doneCnt = answers.filter(a => a !== null).length;
+  html += `<div class="q-nav">
+    <button class="btn" onclick="prevQ()" ${current === 0 ? 'disabled' : ''} aria-label="Попереднє питання">← Назад</button>
+    <span class="btn-ghost-count" aria-live="polite">${doneCnt} відповідей з ${questions.length}</span>
+    ${current < questions.length - 1
+      ? `<button class="btn primary" onclick="nextQ()" aria-label="Наступне питання">Далі →</button>`
+      : `<button class="btn primary" onclick="showResults()">Результати →</button>`
+    }
+  </div>`;
+
+  document.getElementById('test-content').innerHTML = html;
+}
+
+function selectAnswer(i) {
+  if (answered[current]) return;
+  answers[current] = i;
+  answered[current] = true;
+  renderQuestion();
+}
+
+function nextQ() { if (current < questions.length - 1) { current++; renderQuestion(); } }
+function prevQ() { if (current > 0) { current--; renderQuestion(); } }
+
+/* ── Results ── */
+function showResults() {
+  const correct = answers.filter((a, i) => a === questions[i].correct).length;
+  const total = questions.length;
+  const pct = Math.round((correct / total) * 100);
+  const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+  const msg = pct >= 80
+    ? 'Чудово! Ти добре підготовлений до НМТ!'
+    : pct >= 60
+    ? 'Непогано! Повтори складні теми.'
+    : 'Потрібно більше практики — спробуй ще раз.';
+
+  document.getElementById('test-content').innerHTML = `
+    <div class="result-screen" role="status" aria-live="polite">
+      <div class="result-crown" aria-hidden="true">${emoji}</div>
+      <div class="result-title">${correct} / ${total} правильних</div>
+      <div class="result-sub">${msg}</div>
+      <div class="stat-grid">
+        <div class="stat green"><div class="stat-val">${correct}</div><div class="stat-lbl">Правильно</div></div>
+        <div class="stat red"><div class="stat-val">${total - correct}</div><div class="stat-lbl">Помилки</div></div>
+        <div class="stat gold"><div class="stat-val">${pct}%</div><div class="stat-lbl">Результат</div></div>
+      </div>
+      <button class="btn primary" onclick="resetTest()">Пройти ще раз</button>
+    </div>`;
+}
+
+function resetTest() {
+  current = 0;
+  answers = new Array(questions.length).fill(null);
+  answered = new Array(questions.length).fill(false);
+  renderQuestion();
+}
+
+/* ── Timeline helpers ── */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ── Render timeline ── */
+function renderTimeline() {
+  if (!shuffled.length) shuffled = shuffle(timelineEvents.map((_, i) => i));
+
+  let html = `<div class="tl-layout">`;
+
+  /* Left: card pile */
+  html += `<div>
+    <div class="tl-section-title">Картки подій</div>
+    <div class="cards-pile" role="list" aria-label="Картки для розміщення">`;
+
+  shuffled.forEach(origIdx => {
+    const e = timelineEvents[origIdx];
+    const isPlaced = tlPlaced.indexOf(origIdx) !== -1;
+    const isSelected = tlSelected === origIdx;
+    let cls = 'ev-card';
+    if (isPlaced) cls += ' placed';
+    else if (isSelected) cls += ' selected';
+    html += `<div class="${cls}" role="listitem" tabindex="${isPlaced ? -1 : 0}"
+        onclick="selectCard(${origIdx})"
+        onkeydown="if(event.key==='Enter'||event.key===' ')selectCard(${origIdx})"
+        aria-pressed="${isSelected}" aria-disabled="${isPlaced}">
+      <i class="ti ti-calendar-event" aria-hidden="true"></i>
+      <span>${e.event}</span>
+    </div>`;
+  });
+
+  html += `</div></div>`;
+
+  /* Right: timeline rail */
+  html += `<div>
+    <div class="tl-section-title">Стрічка часу — клікни для розміщення</div>
+    <div class="timeline-rail" role="list">`;
+
+  timelineEvents.forEach((e, i) => {
+    const placedIdx = tlPlaced[i];
+    const hasCard = placedIdx !== null && placedIdx !== undefined;
+    const isCorrect = hasCard && placedIdx === i;
+    let cls = 'tl-slot';
+    if (hasCard) cls += isCorrect ? ' correct' : ' wrong';
+
+    html += `<div class="${cls}" role="listitem" tabindex="0"
+        onclick="placeCard(${i})"
+        onkeydown="if(event.key==='Enter'||event.key===' ')placeCard(${i})"
+        aria-label="${e.date}: ${hasCard ? timelineEvents[placedIdx].event : 'порожньо'}">
+      <div class="tl-dot"></div>
+      <div class="tl-date">${e.date}</div>
+      <div class="tl-content">`;
+
+    if (hasCard) {
+      html += timelineEvents[placedIdx].event;
+    } else {
+      html += `<span class="tl-empty">Вибери картку і клікни сюди…</span>`;
+    }
+
+    html += `</div>`;
+    if (hasCard && isCorrect) html += `<div class="tl-hint ok">✓ Вірно!</div>`;
+    if (hasCard && !isCorrect) html += `<div class="tl-hint bad">✗ Неправильно — спробуй інше</div>`;
+    html += `</div>`;
+  });
+
+  html += `</div></div></div>`;
+
+  const correctCount = tlPlaced.filter((p, i) => p === i).length;
+  html += `<div class="tl-footer">
+    <div class="tl-score-label" aria-live="polite">Правильно розміщено: <strong>${correctCount}</strong> / ${timelineEvents.length}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn" onclick="resetTimeline()">Почати знову</button>
+      ${correctCount === timelineEvents.length
+        ? `<button class="btn primary">🏆 Всі правильно!</button>`
+        : ''}
+    </div>
+  </div>`;
+
+  document.getElementById('timeline-content').innerHTML = html;
+}
+
+function selectCard(origIdx) {
+  if (tlPlaced.indexOf(origIdx) !== -1) return;
+  tlSelected = (tlSelected === origIdx) ? null : origIdx;
+  renderTimeline();
+}
+
+function placeCard(slotIdx) {
+  if (tlSelected === null) return;
+  tlPlaced[slotIdx] = tlSelected;
+  tlSelected = null;
+  renderTimeline();
+}
+
+function resetTimeline() {
+  tlSelected = null;
+  tlPlaced = new Array(timelineEvents.length).fill(null);
+  shuffled = shuffle(timelineEvents.map((_, i) => i));
+  renderTimeline();
+}
+
+/* ── Init ── */
+renderQuestion();
+resetTimeline();
+startTimer();
+</script>
+</body>
+</html>
